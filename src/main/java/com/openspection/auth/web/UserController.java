@@ -26,6 +26,7 @@ public class UserController {
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute("userForm", new User());
+        model.addAttribute("pageTitle", "Create a new registration.");
 
         return "registration";
     }
@@ -35,6 +36,8 @@ public class UserController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
+            model.addAttribute("pageTitle", "Create a new registration.");
+
             return "registration";
         }
 
@@ -53,11 +56,15 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
+        model.addAttribute("pageTitle", "Log in with your account.");
+
         return "login";
     }
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
+        model.addAttribute("pageTitle", "Welcome to your profile.");
         return "welcome";
+
     }
 }
