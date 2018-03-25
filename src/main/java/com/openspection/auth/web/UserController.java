@@ -11,6 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -66,5 +69,22 @@ public class UserController {
         model.addAttribute("pageTitle", "Welcome to your profile.");
         return "welcome";
 
+    }
+    @RequestMapping(value = "/users/search", method = RequestMethod.GET)
+    public String searchforusers(Model model, @RequestParam("keywords") String keywords, @RequestParam("category_id") int categoryId) {
+
+System.out.println("Keywords: " + keywords + " Category: " + categoryId);
+	User user = new User();
+	user.setUsername(keywords);
+
+	List<User> searchresults = userService.findUsers(user);
+
+//	ExampleMatcher matcher = ExampleMatcher.matchingAny();
+
+//        Example<User> searchresults = Example.of(user, matcher);
+        model.addAttribute("searchresults", searchresults);
+//        model.addAttribute("pageTitle", "List the posts for " + username);
+
+        return "searchresults";
     }
 }

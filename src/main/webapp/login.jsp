@@ -22,4 +22,9 @@
         </div>
 
     </form>
+<hr>
+<form action="/signin/linkedin" method="POST">
+	            <input type="hidden" name="scope" value="r_basicprofile" />
+	            <input type="submit" value="Login using Linkedin" class="btn btn-primary" />
+	        </form>
  <c:import url="/postbase.jsp" />
