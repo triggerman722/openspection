@@ -1,8 +1,10 @@
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/model/Like.java
+/home/ec2-user/openspection/src/main/java/com/openspection/auth/service/LinkedinSignInAdapter.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/service/UserServiceImpl.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/model/Role.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/web/PostController.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/service/SecurityService.java
+/home/ec2-user/openspection/src/main/java/com/openspection/auth/service/LinkedinConnectionSignup.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/model/User.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/repository/UserRepository.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/model/Award.java

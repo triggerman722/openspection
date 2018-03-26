@@ -1,11 +1,13 @@
 com/openspection/auth/service/PostService.class
 com/openspection/auth/WebSecurityConfig.class
 com/openspection/auth/model/Person.class
+com/openspection/auth/service/LinkedinConnectionSignup.class
 com/openspection/auth/service/PostServiceImpl.class
 com/openspection/auth/validator/PostValidator.class
 com/openspection/auth/validator/UserValidator.class
 com/openspection/auth/service/SecurityServiceImpl.class
 com/openspection/auth/service/SecurityService.class
+com/openspection/auth/service/LinkedinSignInAdapter.class
 com/openspection/auth/model/Comment.class
 com/openspection/auth/model/Feedback.class
 com/openspection/auth/model/Like.class
