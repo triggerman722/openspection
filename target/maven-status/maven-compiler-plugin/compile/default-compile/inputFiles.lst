@@ -12,6 +12,7 @@
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/service/PostService.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/WebSecurityConfig.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/model/Person.java
+/home/ec2-user/openspection/src/main/java/com/openspection/auth/web/IndexController.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/model/Feedback.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/model/Vote.java
 /home/ec2-user/openspection/src/main/java/com/openspection/auth/service/PostServiceImpl.java

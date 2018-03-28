@@ -4,6 +4,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/prebase.jsp" />
+<div class="container">
     <form:form method="POST" modelAttribute="userForm" class="form-signin">
         <h2 class="form-signin-heading">Create your account</h2>
         <spring:bind path="username">
@@ -31,4 +32,5 @@
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
     </form:form>
+</div>
 <c:import url="/postbase.jsp" />

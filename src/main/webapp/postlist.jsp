@@ -3,6 +3,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/prebase.jsp" />
+<div class="container">
 <table border="1">
     <tr>
         <th>DATE</th>
@@ -18,4 +19,6 @@
             <td align="center">${weather["longitude"]}&#x2103;</td>
         </tr>
     </c:forEach>
-</table><c:import url="/postbase.jsp" />
+</table>
+</div>
+<c:import url="/postbase.jsp" />

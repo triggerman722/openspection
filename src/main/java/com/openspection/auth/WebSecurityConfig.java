@@ -4,7 +4,6 @@ import com.openspection.auth.service.LinkedinSignInAdapter;
 import com.openspection.auth.service.LinkedinConnectionSignup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,8 +20,6 @@ import org.springframework.social.connect.web.ProviderSignInController;
 
 @Configuration
 @EnableWebSecurity
-//@WebAppConfiguration
-//@ComponentScan(basePackages = { "com.openspection.auth.service" })
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
@@ -52,7 +49,7 @@ public AuthenticationManager authenticationManagerBean()
         http
 		.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/resources/**", "/registration", "/signin/**", "/signup/**").permitAll()
+                    .antMatchers("/resources/**", "/registration", "/signin/**", "/signup/**", "/").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

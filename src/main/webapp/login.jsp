@@ -5,7 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
  <c:import url="/prebase.jsp" />
-
+<div class="conatiner">
     <form method="POST" action="${contextPath}/login" class="form-signin">
         <h2 class="form-heading">Log in</h2>
 
@@ -27,4 +27,5 @@
 	            <input type="hidden" name="scope" value="r_basicprofile" />
 	            <input type="submit" value="Login using Linkedin" class="btn btn-primary" />
 	        </form>
+</div>
  <c:import url="/postbase.jsp" />

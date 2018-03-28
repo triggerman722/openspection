@@ -64,15 +64,14 @@ public class UserController {
         return "login";
     }
 
-    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
     public String welcome(Model model) {
         model.addAttribute("pageTitle", "Welcome to your profile.");
         return "welcome";
 
     }
     @RequestMapping(value = "/users/search", method = RequestMethod.GET)
-    public String searchforusers(Model model, @RequestParam("keywords") String keywords, @RequestParam("category_id") int categoryId) {
-
+    public String searchforusers(Model model, @RequestParam("keywords") String keywords, @RequestParam(value="category_id", required=false) Integer categoryId) {
 System.out.println("Keywords: " + keywords + " Category: " + categoryId);
 	User user = new User();
 	user.setUsername(keywords);

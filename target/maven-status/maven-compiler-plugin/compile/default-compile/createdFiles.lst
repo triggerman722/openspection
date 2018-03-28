@@ -1,5 +1,6 @@
 com/openspection/auth/service/PostService.class
 com/openspection/auth/WebSecurityConfig.class
+com/openspection/auth/web/IndexController.class
 com/openspection/auth/model/Person.class
 com/openspection/auth/service/LinkedinConnectionSignup.class
 com/openspection/auth/service/PostServiceImpl.class

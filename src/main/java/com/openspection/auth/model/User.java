@@ -7,6 +7,7 @@ import java.util.Set;
 @Table(name = "\"user\"")
 public class User {
     private Long id;
+    @Column(unique=true)
     private String username;
     private String password;
     private String passwordConfirm;

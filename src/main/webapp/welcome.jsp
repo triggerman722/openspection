@@ -3,6 +3,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/prebase.jsp" />
+<div class="container">
     <c:if test="${pageContext.request.userPrincipal.name != null}">
         <form id="logoutForm" method="POST" action="${contextPath}/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -13,4 +14,5 @@
 <a href="${contextPath}/${pageContext.request.userPrincipal.name}/posts">Openspections</a>
 </h2>
     </c:if>
+</div>
 <c:import url="/postbase.jsp" />

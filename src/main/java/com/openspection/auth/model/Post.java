@@ -10,6 +10,7 @@ import java.util.Set;
 
 import java.io.Serializable;
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -32,7 +33,7 @@ public class Post implements Serializable {
     private float longitude;
     private Long radius;
 
-	private boolean requestPhotos;
+    private boolean requestPhotos;
     private boolean requestVideos;
     private boolean requestAudio;
 
@@ -40,12 +41,20 @@ public class Post implements Serializable {
     private Long votesdown;
 
     private Long acceptedcommentid;
-	
 
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date datecreated;
-    @Temporal(javax.persistence.TemporalType.DATE)
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateexpired;
+
+
+    @ManyToMany
+    @JoinTable(name = "POST_COMMMENT", joinColumns = {
+            @JoinColumn(name = "POST_ID", referencedColumnName = "ID"),
+            @JoinColumn(name = "COMMENT_ID", referencedColumnName = "ID")
+    })
+    private Set<Comment> comments;
 
     public Long getId() {
         return id;

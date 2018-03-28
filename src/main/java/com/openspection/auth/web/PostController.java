@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import java.security.Principal;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
+import java.util.Date;
 
 @Controller
 public class PostController {
@@ -63,17 +65,20 @@ public class PostController {
         String name = principal.getName();
 	User loggedUser = UserService.findByUsername(name);
 	postForm.setCreatedby(loggedUser.getId());
+	postForm.setDatecreated(new Date());
 
         PostValidator.validate(postForm, bindingResult);
-
         if (bindingResult.hasErrors()) {
             model.addAttribute("pageTitle", "Create a new post - but please fix these errors!");
+ List<FieldError> errors = bindingResult.getFieldErrors();
+    for (FieldError error : errors ) {
+        System.out.println (error.getObjectName() + " - " + error.getDefaultMessage());
+    }
 
             return "postcreate";
         }
 
-        PostService.save(postForm);
-
+	PostService.save(postForm);
         return "redirect:/welcome";
     }
 
