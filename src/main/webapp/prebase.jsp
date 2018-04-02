@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:800" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
-    <link href="resources/css/common.css" rel="stylesheet">
+    <link href="/resources/css/common.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,7 +44,7 @@
 					<li class="nav-item">
 						<form class="form-inline navbar-nav mr-4" action="/users/search" method="GET">
                 			<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search for...">
+								<input type="text" class="form-control" name="keywords" placeholder="Search for...">
 								<span class="input-group-append">
 									<button class="btn btn-success" type="submit">
 										<i class="fa fa-search"></i>
