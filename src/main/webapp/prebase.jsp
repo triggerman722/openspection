@@ -4,6 +4,10 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +20,10 @@
 
     <title>${pageTitle}</title>
 
-    <link href='http://fonts.googleapis.com/css?family=Lilita+One|Candal|Kaushan+Script|Courgette' rel='stylesheet' type='text/css'>
-
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:800" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type='text/css'>
+    <link href="resources/css/common.css" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -29,107 +33,60 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height:50px;">
+	<nav class="navbar navbar-expand-lg" style="height:50px;">
 		<div class="container">
-				<a class="navbar-brand" href="/" style="font-family: 'Lilita One', cursive;font-size:32px">Openspection.com</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-		<li class="nav-item">
-			<form class="form-inline navbar-nav" action="/users/search" method="GET">
-				<input class="form-control mr-sm-2 " name="keywords" type="text" placeholder="Search for an Openspector" aria-label="Search for an Openspector" value="">
-				<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
-			</form>
-		</li>
+			<a class="navbar-brand" href="/" style="font-family: 'Alegreya Sans', sans-serif;font-size:32px">openspection</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<form class="form-inline navbar-nav mr-4" action="/users/search" method="GET">
+                			<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search for...">
+								<span class="input-group-append">
+									<button class="btn btn-success" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
+								</span>
+							</div>
+		    			</form>
+					</li>
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name == null}">
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a></li>
+                	<li class="nav-item"><a class="nav-link mr-4" href="/login">Log In</a></li>
+					<li class="nav-item"><a class="btn btn-primary" href="/posts/create">Sign Up</a></li>
                     </c:when>
                 </c:choose>
-                        <li class="nav-item"><a class="btn btn-outline-light" href="${pageContext.request.contextPath}/posts/create">POST A JOB</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/login">HELP</a></li>
+
+
                 </ul>
-				</div>
+			</div>
 		</div>
 	</nav>
-<c:if test="${pageContext.request.userPrincipal.name != null}">
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-<div class="container">
-<a class="navbar-brand" href="/welcome">My Home</a>
-<div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Contact Info</a>
-          <a class="dropdown-item" href="#">Bio</a>
-          <a class="dropdown-item" href="#">Reviews</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Favorites
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Favorite Demos</a>
-          <a class="dropdown-item" href="#">Favorite Lists</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Jobs
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="${pageContext.request.contextPath}/${pageContext.request.userPrincipal.name}/posts">All Jobs</a>
-          <a class="dropdown-item" href="#">Draft</a>
-          <a class="dropdown-item" href="#">In Review</a>
-          <a class="dropdown-item" href="#">Hiring</a>
-          <a class="dropdown-item" href="#">Offering</a>
-          <a class="dropdown-item" href="#">Working</a>
-          <a class="dropdown-item" href="#">Done</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Payments
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">All Payments</a>
-          <a class="dropdown-item" href="#">Held In Escrow</a>
-          <a class="dropdown-item" href="#">Completed</a>
-        </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Messages
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Inbox</a>
-          <a class="dropdown-item" href="#">Sent</a>
-          <a class="dropdown-item" href="#">Deleted</a>
-        </div>
-      </li>
-    </ul>
-    <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fa fa-user"></i>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Account Settings</a>
-          <a class="dropdown-item" href="#">Manage Team</a>
-          <a class="dropdown-item" href="#">Billing Settings</a>
-          <a class="dropdown-item" href="#">Billing History</a>
-          <a class="dropdown-item" href="#">Change Password</a>
-          <a class="dropdown-item bg-danger text-white" href="${pageContext.request.contextPath}/logout">Log Out</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
-</nav>
-</c:if>
+	
+    <div class="jumbotron-fluid leading">
+		<div class="container-fluid unleading py-5">
+		<div class="container py-5">
+                <h1 class="display-4">Inspect Anything!</h1>
+				<p class="lead">Find openspections near you and start earning scratch!</p>
+				<p class=">
+                    <form action="/posts/search" method="get" class="form">
+						<div class="form-row">
+							<div class="col-md-5">
+                        		<input type="text" class="form-control col-md-12 mr-2" placeholder="what" name="query" />
+							</div>
+							<div class="col-md-5">
+                        		<input type="text" class="form-control col-md-12 mr-2" placeholder="where" name="location" />
+                        	</div>
+							<div class="col-md-2">
+								<input type="submit" class="btn btn-success col-md-12" />
+							</div>
+						</div>
+                    </form>
+                </p>
+		</div>
+	</div>
+    </div>
+
