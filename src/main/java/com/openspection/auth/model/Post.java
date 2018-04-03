@@ -16,7 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author greg
  */
-@Entity
+@Entity(name="post")
 @Table(name = "\"post\"")
 public class Post implements Serializable {
 

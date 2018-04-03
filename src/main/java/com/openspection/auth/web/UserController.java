@@ -71,8 +71,11 @@ public class UserController {
 
     }
     @RequestMapping(value = "/users/search", method = RequestMethod.GET)
-    public String searchforusers(Model model, @RequestParam("keywords") String keywords, @RequestParam(value="category_id", required=false) Integer categoryId) {
-System.out.println("Keywords: " + keywords + " Category: " + categoryId);
+    public String searchforusers(Model model,
+	@RequestParam("keywords") String keywords,
+	@RequestParam(value="category_id", required=false) Integer categoryId) {
+
+	System.out.println("Keywords: " + keywords + " Category: " + categoryId);
 	User user = new User();
 	user.setUsername(keywords);
 

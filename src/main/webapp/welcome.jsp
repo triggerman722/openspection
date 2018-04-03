@@ -11,7 +11,7 @@
 
         <h2>Welcome ${pageContext.request.userPrincipal.name} | <a onclick="document.forms['logoutForm'].submit()">Logout</a> | 
 <a href="${contextPath}/posts/create">Create a post</a>
-<a href="${contextPath}/${pageContext.request.userPrincipal.name}/posts">Openspections</a>
+<a href="${contextPath}/users/${pageContext.request.userPrincipal.name}/posts">Openspections</a>
 </h2>
     </c:if>
 </div>

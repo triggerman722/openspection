@@ -3,11 +3,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,28 +60,3 @@
 			</div>
 		</div>
 	</nav>
-	
-    <div class="jumbotron-fluid leading">
-		<div class="container-fluid unleading py-5">
-		<div class="container py-5">
-                <h1 class="display-4">Inspect Anything!</h1>
-				<p class="lead">Find openspections near you and start earning scratch!</p>
-				<p class=">
-                    <form action="/posts/search" method="get" class="form">
-						<div class="form-row">
-							<div class="col-md-5">
-                        		<input type="text" class="form-control col-md-12 mr-2" placeholder="what" name="query" />
-							</div>
-							<div class="col-md-5">
-                        		<input type="text" class="form-control col-md-12 mr-2" placeholder="where" name="location" />
-                        	</div>
-							<div class="col-md-2">
-								<input type="submit" class="btn btn-success col-md-12" />
-							</div>
-						</div>
-                    </form>
-                </p>
-		</div>
-	</div>
-    </div>
-

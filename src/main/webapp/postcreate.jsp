@@ -21,10 +21,10 @@
 <form:input type="date" path="dateexpired" class="form-control" placeholder="dateexpired"></form:input>
 </div>
 <div class="form-group">
-<form:input type="number" path="latitude" class="form-control" placeholder="latitude"></form:input>
+<form:input type="number" step="any" path="latitude" class="form-control" placeholder="latitude"></form:input>
 </div>
 <div class="form-group">
-<form:input type="number" path="longitude" class="form-control" placeholder="longitude"></form:input>
+<form:input type="number" step="any" path="longitude" class="form-control" placeholder="longitude"></form:input>
 </div>
 <div class="form-group">
 <form:input type="number" path="radius" class="form-control" placeholder="radius"></form:input>

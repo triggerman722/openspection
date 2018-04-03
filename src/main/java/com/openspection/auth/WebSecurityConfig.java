@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.http.HttpMethod;
 
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
@@ -50,6 +51,8 @@ public AuthenticationManager authenticationManagerBean()
 		.csrf().disable()
                 .authorizeRequests()
                     .antMatchers("/resources/**", "/registration", "/signin/**", "/signup/**", "/").permitAll()
+			.antMatchers(HttpMethod.GET, "/posts/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/users/**").permitAll()
                     .anyRequest().authenticated()
                     .and()
                 .formLogin()

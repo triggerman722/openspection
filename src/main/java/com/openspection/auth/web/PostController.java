@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Date;
 
@@ -29,13 +31,13 @@ public class PostController {
     @Autowired
     private PostValidator PostValidator;
 
-    @RequestMapping(value = "/{username}/posts", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/{username}/posts", method = RequestMethod.GET)
     public String postList(Model model, @PathVariable String username) {
 
 	User loggedUser = UserService.findByUsername(username);
-	List<Post> userPosts = PostService.findByCreatedby(loggedUser.getId());
+	List<Post> searchresults = PostService.findByCreatedby(loggedUser.getId());
 
-        model.addAttribute("postList", userPosts);
+        model.addAttribute("searchresults", searchresults);
         model.addAttribute("pageTitle", "List the posts for " + username);
 
         return "postlist";
@@ -80,6 +82,28 @@ public class PostController {
 
 	PostService.save(postForm);
         return "redirect:/welcome";
+    }
+    @RequestMapping(value = "/posts/search", method = RequestMethod.GET)
+    public String searchforposts(Model model, Pageable pageable,
+        @RequestParam("keywords") String keywords,
+	@RequestParam(value="location", required=false) String location,
+        @RequestParam(value="category_id", required=false) Integer categoryId) {
+
+        System.out.println("Keywords: " + keywords + "Location: " + location + " Category: " + categoryId);
+
+//need to get lat/long from location.
+double latitude = 42.123456;
+double longitude = -81.123456;
+
+        List<Post> searchresults = PostService.findPostsByTitleDescriptionAndLocation(keywords, keywords, latitude, longitude, 5, pageable);
+System.out.println(searchresults.size());
+//      ExampleMatcher matcher = ExampleMatcher.matchingAny();
+
+//        Example<User> searchresults = Example.of(user, matcher);
+        model.addAttribute("searchresults", searchresults);
+//        model.addAttribute("pageTitle", "List the posts for " + username);
+
+        return "postlist";
     }
 
 }
