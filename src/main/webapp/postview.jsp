@@ -3,73 +3,26 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/prebase.jsp" />
-<div class="container">
-<div class="row">
-	<div class="col-md-10">
-		<h1 class="text-uppercase">${singlepost.title}</h1>
-	</div>
-	<div class="col-md-2 text-right my-auto"><span>Openspection #${singlepost.id}</span></div>
-</div>
 
-<h2>Job Posting Details</h2>
-<div class="row">
-	<div class="col-md-4">
-		<dl class="dl-horizontal">
-			<dt>Posted Date</dt>
-			<dd>${singlepost.datecreated}</dd>
-		</dl>
-                <dl class="dl-horizontal">
-                        <dt>Respond By</dt>
-                        <dd>${singlepost.dateexpired}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                        <dt>Word Count</dt>
-                        <dd>${singlepost.datecreated}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                        <dt>Accent</dt>
-                        <dd>${singlepost.datecreated}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                        <dt>Role</dt>
-                        <dd>${singlepost.datecreated}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                        <dt>Style</dt>
-                        <dd>${singlepost.datecreated}</dd>
-                </dl>
+<div class="container-fluid">
+	<div class="container">
+		<a href="/posts/${singlepost.id}/application" class="float-right btn btn-success" role="button">Apply</a>
+		<div class="media">
+			<img class="mr-3 rounded-circle" src="/resources/img/back0.jpg" alt="Generic placeholder image" width="48" height="48">
+			<div class="media-body">
+				<a href="/users/" class="mt-0">${singlepost.title}</a><br>
+				<p class="text-muted"><small>${singlepost.datecreated}</small></p>
+			</div>
+		</div>
+		<div>
+			<h5>${singlepost.title}</h5>
+			<p>${singlepost.description}</p>
+		</div>
+		<div>
+			<i class="fa fa-money align-self-center mr-3"></i>
+			<p class="my-0 text-muted"><small>Offered compensation</small></p>
+			<p class="my-0"><small>$42.123455</small></p>
+		</div>
 	</div>
-	<div class="col-md-4">
-		<dl class="dl-horizontal">
-			<dt>Language</dt>
-			<dd>${singlepost.datecreated}</dd>
-		</dl>
-                <dl class="dl-horizontal">
-                        <dt>Gender</dt>
-                        <dd>${singlepost.dateexpired}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                        <dt>Age Range</dt>
-                        <dd>${singlepost.datecreated}</dd>
-                </dl>
-                <dl class="dl-horizontal">
-                        <dt>Category</dt>
-                        <dd>${singlepost.datecreated}</dd>
-                </dl>
-	</div>
-</div>
-<h3>Job Description</h3>
-${singlepost.description}
-<div class="well">
-<h2>Start Applying for Openspections Now!</h2>
-This Openspection is open and accepting applications. With a <a href="">Premium Openspection.com Membership</a> you can:
-<ul>
-<li><strong>View</strong> full Openspection posting</li>
-<li><strong>Submit</strong> custom Openspection credentials</li>
-<li><strong>Get Hired</strong> and paid securely</li>
-</ul>
-If you are a premium member, <a href="">log in</a> to submit your openspection capabilities.
- To purchase a Premium Membership and start to this and many other job postings today, <a href="">sign up now</a>.
-</div>
 </div>
 <c:import url="/postbase.jsp" />

@@ -19,6 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Date;
+import org.apache.commons.io.IOUtils;
+import org.json.*;
+import java.net.*;
 
 @Controller
 public class PostController {
@@ -61,6 +64,16 @@ public class PostController {
 
         return "postcreate";
     }
+    @RequestMapping(value = "/posts/{postid}/application", method = RequestMethod.GET)
+    public String applicationCreate(Model model, @PathVariable Long postid) {
+
+	Post singlePost = PostService.getOne(postid);
+
+        model.addAttribute("singlepost", singlePost);
+        model.addAttribute("pageTitle", "Apply for: " + singlePost.getTitle());
+
+        return "applicationcreate";
+    }
 
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
     public String postCreate(@ModelAttribute("postForm") Post postForm, BindingResult bindingResult, Model model, Principal principal) {
@@ -72,11 +85,6 @@ public class PostController {
         PostValidator.validate(postForm, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("pageTitle", "Create a new post - but please fix these errors!");
- List<FieldError> errors = bindingResult.getFieldErrors();
-    for (FieldError error : errors ) {
-        System.out.println (error.getObjectName() + " - " + error.getDefaultMessage());
-    }
-
             return "postcreate";
         }
 
@@ -87,21 +95,35 @@ public class PostController {
     public String searchforposts(Model model, Pageable pageable,
         @RequestParam("keywords") String keywords,
 	@RequestParam(value="location", required=false) String location,
+	@RequestParam(value="latitude", required=false) Double flatitude,
+	@RequestParam(value="longitude", required=false) Double flongitude,
         @RequestParam(value="category_id", required=false) Integer categoryId) {
 
-        System.out.println("Keywords: " + keywords + "Location: " + location + " Category: " + categoryId);
+	double latitude = flatitude;
+	double longitude = flongitude;
 
-//need to get lat/long from location.
-double latitude = 42.123456;
-double longitude = -81.123456;
+        System.out.println("Keywords: " + keywords 
+		+ "Location: " + location 
+		+ "Latitude: " + latitude 
+		+ "Longitude: " + longitude 
+		+ " Category: " + categoryId);
+	if (latitude < 1 && longitude < 1) {
 
-        List<Post> searchresults = PostService.findPostsByTitleDescriptionAndLocation(keywords, keywords, latitude, longitude, 5, pageable);
-System.out.println(searchresults.size());
-//      ExampleMatcher matcher = ExampleMatcher.matchingAny();
+		JSONArray joa = null;
+		try {
+			joa = (JSONArray) new JSONTokener(IOUtils.toString(new URL("https://nominatim.openstreetmap.org/search?q="+URLEncoder.encode(location, "UTF-8")+"&format=json&addressdetails=1").openStream(), "UTF-8")).nextValue();
+			JSONObject jo = joa.getJSONObject(0);
+			latitude = jo.getDouble("lat");
+			longitude = jo.getDouble("lon");
+		} catch (Exception e){
+			System.out.println(e.getMessage());
+		}
+	}
 
-//        Example<User> searchresults = Example.of(user, matcher);
+        List<Post> searchresults = PostService.findPostsByTitleDescriptionAndLocation(keywords, keywords, latitude, longitude, 100, pageable);
         model.addAttribute("searchresults", searchresults);
-//        model.addAttribute("pageTitle", "List the posts for " + username);
+        model.addAttribute("keywords", keywords);
+        model.addAttribute("location", location);
 
         return "postlist";
     }

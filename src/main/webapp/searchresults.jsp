@@ -6,6 +6,21 @@
 
   <div class="container-fluid">
 	   <div class="container">
+<form action="/posts/search" method="GET" class="form">
+                                                <div class="form-row">
+                                                        <div class="col-md-5">
+                                        <input type="text" class="form-control col-md-12 mr-2" placeholder="what" name="keywords" />
+                                                        </div>
+                                                        <div class="col-md-5">
+                                        <input type="text" class="form-control col-md-12 mr-2" placeholder="where" name="location" />
+                                </div>
+                                                        <div class="col-md-2">
+<button class="btn btn-success col-md-12" type="submit">
+                                                                                <i class="fa fa-search"></i>
+                                                                        </button>
+                                                        </div>
+                                                </div>
+                    </form>
 		   <h4 class="my-4">Search Results</h4>
 		   <hr class="my-4">
 		   <ul class="list-unstyled">

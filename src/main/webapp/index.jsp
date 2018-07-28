@@ -17,7 +17,7 @@
                                         <input type="text" class="form-control col-md-12 mr-2" placeholder="what" name="keywords" />
                                                         </div>
                                                         <div class="col-md-5">
-                                        <input type="text" class="form-control col-md-12 mr-2" placeholder="where" name="location" />
+                                        <input type="text" class="form-control col-md-12 mr-2" placeholder="where" name="location" id="pac-location" />
                                 </div>
                                                         <div class="col-md-2">
 <button class="btn btn-success col-md-12" type="submit">
@@ -25,6 +25,8 @@
                                                                         </button>
                                                         </div>
                                                 </div>
+<input type ="hidden" name="latitude" id="hid-latitude" />
+<input type ="hidden" name="longitude" id="hid-longitude" />
                     </form>
                 </p>
                 </div>

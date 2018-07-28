@@ -50,7 +50,7 @@ public AuthenticationManager authenticationManagerBean()
         http
 		.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/resources/**", "/registration", "/signin/**", "/signup/**", "/").permitAll()
+                    .antMatchers("/resources/**", "/registration", "/signin/**", "/signup/**", "/", "/randomimage/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/posts/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/users/**").permitAll()
                     .anyRequest().authenticated()

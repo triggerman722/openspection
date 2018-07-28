@@ -28,35 +28,26 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-lg" style="height:50px;">
+	<nav class="navbar navbar-expand-md navbar-light">
 		<div class="container">
 			<a class="navbar-brand" href="/" style="font-family: 'Alegreya Sans', sans-serif;font-size:32px">openspection</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
+					<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item">
-						<form class="form-inline navbar-nav mr-4" action="/users/search" method="GET">
-                			<div class="input-group">
-								<input type="text" class="form-control" name="keywords" placeholder="Search for...">
-								<span class="input-group-append">
-									<button class="btn btn-success" type="submit">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div>
-		    			</form>
-					</li>
                 <c:choose>
                     <c:when test="${pageContext.request.userPrincipal.name == null}">
-                	<li class="nav-item"><a class="nav-link mr-4" href="/login">Log In</a></li>
-					<li class="nav-item"><a class="btn btn-primary" href="/posts/create">Sign Up</a></li>
+			<li class="nav-item"><a class="nav-link" href="/registration">Sign Up</a></li>
+			<li class="nav-item my-auto">or</li>
+			<li class="nav-item"><a class="nav-link mr-4" href="/login">Log In</a></li>
+                    </c:when>
+		    <c:when test="${pageContext.request.userPrincipal.name != null}">
+                        <li class="nav-item"><a class="nav-link" href="/welcome">${pageContext.request.userPrincipal.name}</a></li>
                     </c:when>
                 </c:choose>
-
-
+			<li class="nav-item"><a class="btn btn-success" href="/posts/create">Get an Inspection</a></li>
                 </ul>
-			</div>
-		</div>
 	</nav>
+	</div>
+		</div>
