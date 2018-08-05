@@ -5,7 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/prebase.jsp" />
 <div class="container">
-    <form:form method="POST" modelAttribute="postForm" class="form-signin">
+	<form:form method="POST" modelAttribute="singlepost" class="form-signin">
         <h2 class="form-signin-heading">Create your application</h2>
         <spring:bind path="title">
             <div class="form-group ${status.error ? 'has-error' : ''}">

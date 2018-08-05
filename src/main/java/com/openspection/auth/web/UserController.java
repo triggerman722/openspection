@@ -59,6 +59,7 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
+	model.addAttribute("userForm", new User());
         model.addAttribute("pageTitle", "Log in with your account.");
 
         return "login";

@@ -1,7 +1,7 @@
 package com.openspection.auth;
 
-import com.openspection.auth.service.LinkedinSignInAdapter;
-import com.openspection.auth.service.LinkedinConnectionSignup;
+//import com.openspection.auth.service.LinkedinSignInAdapter;
+//import com.openspection.auth.service.LinkedinConnectionSignup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,18 +13,18 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.http.HttpMethod;
-
+/*
 import org.springframework.social.connect.ConnectionFactoryLocator;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.mem.InMemoryUsersConnectionRepository;
 import org.springframework.social.connect.web.ProviderSignInController;
-
+*/
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
-
+/*
     @Autowired
     private ConnectionFactoryLocator connectionFactoryLocator;
 
@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private LinkedinConnectionSignup linkedinConnectionSignup;
-
+*/
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -68,6 +68,7 @@ public AuthenticationManager authenticationManagerBean()
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
+/*
  @Bean
     // @Primary
     public ProviderSignInController providerSignInController() {
@@ -76,4 +77,5 @@ public AuthenticationManager authenticationManagerBean()
 	controller.setApplicationUrl("http://www.codetally.com:8120");
 	return controller;
 	}
+*/
 }

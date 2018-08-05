@@ -9,7 +9,7 @@
 	<div class="container">
 <div class="row">
     <div class="col-md-3">
-                           <p class="my-4">Filters</p>
+                           <p class="my-4">Filter</p>
                    <hr class="my-4">
     <div class="form-group">
   <label for="sel1">Category</label>
