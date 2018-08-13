@@ -34,7 +34,7 @@ public class PostController {
     @Autowired
     private PostValidator PostValidator;
 
-    @RequestMapping(value = "/users/{username}/posts", method = RequestMethod.GET)
+    @RequestMapping(value = "/members/{username}/posts", method = RequestMethod.GET)
     public String postList(Model model, @PathVariable String username) {
 
 	User loggedUser = UserService.findByUsername(username);
@@ -89,7 +89,7 @@ public class PostController {
         }
 
 	PostService.save(postForm);
-        return "redirect:/welcome";
+        return "redirect:/members/"+name;
     }
     @RequestMapping(value = "/posts/search", method = RequestMethod.GET)
     public String searchforposts(Model model, Pageable pageable,

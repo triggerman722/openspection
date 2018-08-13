@@ -43,7 +43,19 @@
 			<li class="nav-item"><a class="nav-link mr-4" href="/login">Log In</a></li>
                     </c:when>
 		    <c:when test="${pageContext.request.userPrincipal.name != null}">
-                        <li class="nav-item"><a class="nav-link" href="/welcome">${pageContext.request.userPrincipal.name}</a></li>
+			<form id="logoutForm" method="POST" action="${contextPath}/logout">
+            			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        		</form>
+ 			<li class="nav-item dropdown">
+        			<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         ${pageContext.request.userPrincipal.name} 
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/members/${pageContext.request.userPrincipal.name}">Profile</a>
+          <div class="dropdown-divider"></div>
+	  <a onclick="document.forms['logoutForm'].submit()" class="dropdown-item">Logout</a>
+        </div>
+      </li>
                     </c:when>
                 </c:choose>
 			<li class="nav-item"><a class="btn btn-success" href="/posts/create">Get an Inspection</a></li>
