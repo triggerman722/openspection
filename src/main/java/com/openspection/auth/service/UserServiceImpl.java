@@ -40,6 +40,10 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
     @Override
+    public User getOne(Long userid) {
+        return userRepository.getOne(userid);
+    }
+    @Override
     public List<User> findUsers(User probe) {
         ExampleMatcher matcher = ExampleMatcher.matchingAny()
 		.withMatcher("username", contains());

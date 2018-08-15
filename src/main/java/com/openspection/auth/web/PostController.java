@@ -2,9 +2,12 @@ package com.openspection.auth.web;
 
 import com.openspection.auth.model.Post;
 import com.openspection.auth.model.User;
+import com.openspection.auth.model.Application;
 import com.openspection.auth.service.PostService;
 import com.openspection.auth.service.UserService;
+import com.openspection.auth.service.ApplicationService;
 import com.openspection.auth.validator.PostValidator;
+import com.openspection.auth.validator.ApplicationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import java.security.Principal;
@@ -32,7 +35,13 @@ public class PostController {
     private UserService UserService;
 
     @Autowired
+    private ApplicationService ApplicationService;
+
+    @Autowired
     private PostValidator PostValidator;
+
+    @Autowired
+    private ApplicationValidator ApplicationValidator;
 
     @RequestMapping(value = "/members/{username}/posts", method = RequestMethod.GET)
     public String postList(Model model, @PathVariable String username) {
@@ -49,8 +58,10 @@ public class PostController {
     public String getSinglePost(Model model, @PathVariable Long postid) {
 
 	Post singlePost = PostService.getOne(postid);
+	User singleUser = UserService.getOne(singlePost.getCreatedby());
 
         model.addAttribute("singlepost", singlePost);
+        model.addAttribute("singleuser", singleUser);
         model.addAttribute("pageTitle", singlePost.getTitle());
 
         return "postview";
@@ -65,14 +76,32 @@ public class PostController {
         return "postcreate";
     }
     @RequestMapping(value = "/posts/{postid}/application", method = RequestMethod.GET)
-    public String applicationCreate(Model model, @PathVariable Long postid) {
+    public String applicationGet(Model model, @PathVariable Long postid) {
 
 	Post singlePost = PostService.getOne(postid);
+	Application application = new Application();
+	application.setPost(singlePost);
 
-        model.addAttribute("singlepost", singlePost);
+        model.addAttribute("application", application);
         model.addAttribute("pageTitle", "Apply for: " + singlePost.getTitle());
 
         return "applicationcreate";
+    }
+
+    @RequestMapping(value = "/posts/{postid}/application", method = RequestMethod.POST)
+    public String applicationCreate(@ModelAttribute("applicationForm") Application applicationForm, BindingResult bindingResult, Model model, Principal principal) {
+        String name = principal.getName();
+        User loggedUser = UserService.findByUsername(name);
+        applicationForm.setUser(loggedUser);
+
+        ApplicationValidator.validate(applicationForm, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("pageTitle", "Create a new application - but please fix these errors!");
+            return "applicationcreate";
+        }
+
+        ApplicationService.save(applicationForm);
+        return "redirect:/members/"+name;
     }
 
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)

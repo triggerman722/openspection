@@ -12,8 +12,8 @@
         <spring:bind path="description">
             <div class="form-group ${status.error ? 'has-error' : ''} col-md-6">
 		<label>Description</label>
-                <form:input type="text" path="description" class="form-control" placeholder="Description"
-                            autofocus="true"></form:input>
+                <form:textarea path="description" class="form-control" rows="5" 
+                            autofocus="true"></form:textarea>
                 <form:errors path="description"></form:errors>
             </div>
         </spring:bind>
@@ -21,8 +21,13 @@
             <div class="form-group ${status.error ? 'has-error' : ''} col-md-6">
                 <label>Photo</label>
 		<form:hidden path="photourl" />
-<img src="${user.getPhotourl()}" >
 <input type="file" name="photofile" class="form-control"/>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="removephoto">
+  <label class="form-check-label" for="defaultCheck1">
+   Remove photo 
+  </label>
+</div>
                 <form:errors path="photourl"></form:errors>
             </div>
         </spring:bind>
@@ -91,6 +96,12 @@
                 <label>Banner</label>
 		<form:hidden path="bannerurl" />
 <input type="file" name="bannerfile" class="form-control"/>
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="removebanner">
+  <label class="form-check-label" for="defaultCheck1">
+   Remove banner 
+  </label>
+</div>
                 <form:errors path="bannerurl"></form:errors>
             </div>
         </spring:bind>

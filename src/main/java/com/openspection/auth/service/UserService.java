@@ -9,4 +9,5 @@ public interface UserService {
     User findByUsername(String username);
     List<User> findUsers(User probe);
     User encryptuser(User user);
+    User getOne(Long userid);
 }

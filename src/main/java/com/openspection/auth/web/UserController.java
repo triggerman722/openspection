@@ -1,8 +1,12 @@
 package com.openspection.auth.web;
 
 import com.openspection.auth.model.User;
+import com.openspection.auth.model.Post;
+import com.openspection.auth.model.Application;
 import com.openspection.auth.service.SecurityService;
 import com.openspection.auth.service.UserService;
+import com.openspection.auth.service.PostService;
+import com.openspection.auth.service.ApplicationService;
 import com.openspection.auth.validator.UserValidator;
 import com.openspection.auth.validator.UserprofileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +28,12 @@ import java.io.File;
 public class UserController {
     @Autowired
     private UserService UserService;
+
+    @Autowired
+    private PostService PostService;
+
+    @Autowired
+    private ApplicationService ApplicationService;
 
     @Autowired
     private SecurityService SecurityService;
@@ -94,10 +104,15 @@ public class UserController {
 	boolean isEditable = false;
 
         User loggedUser = UserService.findByUsername(username);
+	List<Post> userposts = PostService.findByCreatedby(loggedUser.getId());
+	List<Application> userapplications = ApplicationService.findByUserId(loggedUser.getId());
+
 	if(principal!=null && principal.getName().equalsIgnoreCase(username)) {
 		isEditable = true;
 	}
 	model.addAttribute("user", loggedUser);
+	model.addAttribute("userposts", userposts);
+	model.addAttribute("userapplications", userapplications);
 	model.addAttribute("editable", isEditable);
         model.addAttribute("pageTitle", "Welcome to your profile, "+username+".");
         return "member";

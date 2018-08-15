@@ -46,19 +46,19 @@
 </div>
 <div class="form-row">
 	<div class="form-group col-md-12">
-		<div class="form-check form-check-inline col-md-3">
+		<div class="form-check form-check-inline">
   <form:checkbox path="requestPhotos" class="form-check-input"></form:checkbox>
   <label class="form-check-label">
   Request Photos
   </label>
 		</div>
-		<div class="form-check form-check-inline col-md-3">
+		<div class="form-check form-check-inline">
   <form:checkbox path="requestVideos" class="form-check-input"></form:checkbox>
   <label class="form-check-label">
   Request Videos 
   </label>
 		</div>
-		<div class="form-check form-check-inline col-md-3">
+		<div class="form-check form-check-inline col-md-4">
   <form:checkbox path="requestAudio" class="form-check-input"></form:checkbox>
   <label class="form-check-label">
   Request Audio 

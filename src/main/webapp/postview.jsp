@@ -18,6 +18,14 @@
 			<h5>${singlepost.title}</h5>
 			<p>${singlepost.description}</p>
 		</div>
+<div class="media">
+<img class="align-self-center mr-1 rounded-circle" src="${singleuser.getPhotourl()}" style="width:32px;height:32px;">
+<div class="media-body my-auto">
+<p class="m-0"><small><strong>Posted by <a href="/members/${singleuser.getUsername()}">${singleuser.getUsername()}</a></strong></small></p>
+<p class="m-0 text-muted"><small>${singlepost.datecreated}
+<i class="fa fa-comment ml-3 mr-1"></i>0</small></p>
+</div>
+</div>
 		<div>
 			<i class="fa fa-money align-self-center mr-3"></i>
 			<p class="my-0 text-muted"><small>Offered compensation</small></p>

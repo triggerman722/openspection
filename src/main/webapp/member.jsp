@@ -40,9 +40,37 @@
 </div>
 </div>
 <div class="container">
-<p class="text-muted text-uppercase">licenses</p>
+<p class="text-muted text-uppercase">openspections</p>
+<c:forEach var="userpost" items="${userposts}">
+                        <li class="media">
+                                <img class="mr-3 rounded-circle" src="/resources/img/back0.jpg" width="48" height="48">
+                                <div class="media-body">
+                                <span class="float-right text-muted">4w</span>
+                                <h5 class="mt-0 mb-1"><a href="${contextPath}/posts/${userpost["id"]}">${userpost["title"]}</a></h5>${userpost["description"]}
+                                <p>
+                                        <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Popular</a>
+                                        <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Location-based</a>
+                                        <a href="#" class="badge badge-danger"><i class="fa fa-tag mr-1"></i>Urgent</a>
+                                </p>
+                                </div>
+                        </li>
+                        <hr class="my-4">
+</c:forEach>
+<p class="text-muted text-uppercase">applications</p>
+<c:forEach var="userpost" items="${userposts}">
+                        <li class="media">
+                                <img class="mr-3 rounded-circle" src="/resources/img/back0.jpg" width="48" height="48">
+                                <div class="media-body">
+                                <span class="float-right text-muted">4w</span>
+                                <h5 class="mt-0 mb-1"><a href="${contextPath}/posts/${userpost["id"]}">${userpost["title"]}</a></h5>${userpost["description"]}
+                                <p>
+                                        <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Popular</a>
+                                        <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Location-based</a>
+                                        <a href="#" class="badge badge-danger"><i class="fa fa-tag mr-1"></i>Urgent</a>
+                                </p>
+                                </div>
+                        </li>
+                        <hr class="my-4">
+</c:forEach>
 </div>
-
-
-<a href="${contextPath}/members/${pageContext.request.userPrincipal.name}/posts">Openspections</a>
 <c:import url="/postbase.jsp" />
