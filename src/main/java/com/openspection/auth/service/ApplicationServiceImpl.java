@@ -17,6 +17,10 @@ public class ApplicationServiceImpl implements ApplicationService {
         applicationRepository.save(application);
     }
     @Override
+    public void delete(Application application) {
+        applicationRepository.delete(application);
+    }
+    @Override
     public List<Application> findByPostId(Long postId) {
         return applicationRepository.findByPostId(postId);
     }

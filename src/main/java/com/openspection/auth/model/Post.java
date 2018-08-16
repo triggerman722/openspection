@@ -20,8 +20,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "\"post\"")
 public class Post implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String title;
@@ -56,6 +54,8 @@ public class Post implements Serializable {
     })
     private Set<Comment> comments;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }

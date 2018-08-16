@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface ApplicationService {
     void save(Application application);
+    void delete(Application application);
     Application getOne(Long applicationid);
     List<Application> findByPostId(Long postId);
     List<Application> findByUserId(Long UserId);

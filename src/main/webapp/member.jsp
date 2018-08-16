@@ -57,17 +57,20 @@
                         <hr class="my-4">
 </c:forEach>
 <p class="text-muted text-uppercase">applications</p>
-<c:forEach var="userpost" items="${userposts}">
+<c:forEach var="userapplication" items="${userapplications}">
                         <li class="media">
                                 <img class="mr-3 rounded-circle" src="/resources/img/back0.jpg" width="48" height="48">
                                 <div class="media-body">
                                 <span class="float-right text-muted">4w</span>
-                                <h5 class="mt-0 mb-1"><a href="${contextPath}/posts/${userpost["id"]}">${userpost["title"]}</a></h5>${userpost["description"]}
+                                <h5 class="mt-0 mb-1"><a href="${contextPath}/posts/${userapplication.getPost().getId()}/application/${userapplication.getId()}">${userapplication.getPost().getTitle()}</a></h5>${userapplication.getPost().getDescription()}
                                 <p>
                                         <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Popular</a>
                                         <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Location-based</a>
                                         <a href="#" class="badge badge-danger"><i class="fa fa-tag mr-1"></i>Urgent</a>
                                 </p>
+<c:if test="${editable}">
+				<p><a href="${contextPath}/posts/${userapplication.getPost().getId()}/application/${userapplication.getId()}/cancel">Cancel</a></p>
+</c:if>
                                 </div>
                         </li>
                         <hr class="my-4">

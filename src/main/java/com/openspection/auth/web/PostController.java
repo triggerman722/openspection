@@ -76,11 +76,11 @@ public class PostController {
         return "postcreate";
     }
     @RequestMapping(value = "/posts/{postid}/application", method = RequestMethod.GET)
-    public String applicationGet(Model model, @PathVariable Long postid) {
+    public String applicationCreateRequest(Model model, @PathVariable Long postid) {
 
 	Post singlePost = PostService.getOne(postid);
+
 	Application application = new Application();
-	application.setPost(singlePost);
 
         model.addAttribute("application", application);
         model.addAttribute("pageTitle", "Apply for: " + singlePost.getTitle());
@@ -89,21 +89,59 @@ public class PostController {
     }
 
     @RequestMapping(value = "/posts/{postid}/application", method = RequestMethod.POST)
-    public String applicationCreate(@ModelAttribute("applicationForm") Application applicationForm, BindingResult bindingResult, Model model, Principal principal) {
+    public String applicationCreate(@ModelAttribute("application") Application application, BindingResult bindingResult, Model model, Principal principal, @PathVariable Long postid) {
         String name = principal.getName();
         User loggedUser = UserService.findByUsername(name);
-        applicationForm.setUser(loggedUser);
+	Post singlePost = PostService.getOne(postid);
 
-        ApplicationValidator.validate(applicationForm, bindingResult);
+System.out.println("The Name is: " + name);
+
+        application.setUser(loggedUser);
+        application.setPost(singlePost);
+
+System.out.println("The post is: " + application.getPost().getId());
+
+        ApplicationValidator.validate(application, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("pageTitle", "Create a new application - but please fix these errors!");
             return "applicationcreate";
         }
 
-        ApplicationService.save(applicationForm);
+        ApplicationService.save(application);
         return "redirect:/members/"+name;
     }
+    @RequestMapping(value = "/posts/{postid}/application/{applicationid}", method = RequestMethod.GET)
+    public String applicationGet(Model model, @PathVariable Long postid, @PathVariable Long applicationid) {
 
+        Post singlePost = PostService.getOne(postid);
+        Application singleApplication = ApplicationService.getOne(applicationid);
+
+        model.addAttribute("application", singleApplication);
+        model.addAttribute("pageTitle", "Application for: " + singlePost.getTitle());
+
+        return "applicationview";
+    }
+
+    @RequestMapping(value = "/posts/{postid}/application/{applicationid}/cancel", method = RequestMethod.GET)
+    public String applicationCancelRequest(Model model, @PathVariable Long postid, @PathVariable Long applicationid) {
+    
+        Post singlePost = PostService.getOne(postid);
+        Application singleApplication = ApplicationService.getOne(applicationid);
+
+        model.addAttribute("application", singleApplication);
+        model.addAttribute("pageTitle", "Cancel application for: " + singlePost.getTitle());
+
+        return "applicationcancel";
+    }
+    @RequestMapping(value = "/posts/{postid}/application/{applicationid}/cancel", method = RequestMethod.POST)
+    public String applicationCancel(Model model, @PathVariable Long postid, @PathVariable Long applicationid) {
+   
+        Application singleApplication = ApplicationService.getOne(applicationid);
+
+	ApplicationService.delete(singleApplication);
+
+	return "redirect:/posts/"+postid;
+    }
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
     public String postCreate(@ModelAttribute("postForm") Post postForm, BindingResult bindingResult, Model model, Principal principal) {
         String name = principal.getName();
