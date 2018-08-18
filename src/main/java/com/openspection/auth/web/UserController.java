@@ -73,10 +73,10 @@ public class UserController {
 
 	User encrypteduser = UserService.encryptuser(userForm);
 	if (encrypteduser.getBannerurl() == null) {
-		encrypteduser.setBannerurl("/banners/default/default.png");
+		encrypteduser.setBannerurl("/banners/default/default.jpg");
 	}
         if (encrypteduser.getPhotourl() == null) {
-                encrypteduser.setPhotourl("/images/default.png");
+                encrypteduser.setPhotourl("/images/default/default.jpg");
         }
         UserService.save(encrypteduser);
 

@@ -3,7 +3,7 @@
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/prebase.jsp" />
-<div class="jumbotron-fluid" style="background-size:cover;background: url(${user.getBannerurl()}) no-repeat">
+<div class="jumbotron-fluid bg-secondary" style="background-size:cover;background-position:center bottom;background: url(${user.getBannerurl()}) no-repeat">
         <div class="container-fluid py-5">
                 <div class="container py-5">
                 </div>
