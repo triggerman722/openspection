@@ -105,6 +105,7 @@ public class UserController {
 
         User loggedUser = UserService.findByUsername(username);
 	List<Post> userposts = PostService.findByCreatedby(loggedUser.getId());
+	List<Post> userinspections = PostService.findAllByInspectors(loggedUser);
 	List<Application> userapplications = ApplicationService.findByUserId(loggedUser.getId());
 
 	if(principal!=null && principal.getName().equalsIgnoreCase(username)) {
@@ -113,6 +114,7 @@ public class UserController {
 	model.addAttribute("user", loggedUser);
 	model.addAttribute("userposts", userposts);
 	model.addAttribute("userapplications", userapplications);
+	model.addAttribute("userinspections", userinspections);
 	model.addAttribute("editable", isEditable);
         model.addAttribute("pageTitle", "Welcome to your profile, "+username+".");
         return "member";

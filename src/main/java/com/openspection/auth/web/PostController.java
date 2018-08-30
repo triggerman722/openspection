@@ -55,12 +55,33 @@ public class PostController {
         return "postlist";
     }
     @RequestMapping(value = "/posts/{postid}", method = RequestMethod.GET)
-    public String getSinglePost(Model model, @PathVariable Long postid) {
+    public String getSinglePost(Model model, @PathVariable Long postid, Principal principal) {
 
 	Post singlePost = PostService.getOne(postid);
 	User singleUser = UserService.getOne(singlePost.getCreatedby());
 
+	boolean isApplyable = true;
+	boolean isEditable = false;
+
+        if(principal!=null) {
+		if (principal.getName().equalsIgnoreCase(singleUser.getUsername())) {
+                	isApplyable = false;
+			isEditable = true;
+		}
+		User loggedUser = UserService.findByUsername(principal.getName());
+		List<Application> priorapplications = ApplicationService.findByUserIdAndPostId(loggedUser.getId(), singlePost.getId());
+		if (priorapplications!=null && priorapplications.size() > 0) {
+			isApplyable = false;
+		}
+        }
+
+	List<Application> applications = ApplicationService.findByPostId(singlePost.getId());
+
+        model.addAttribute("applyable", isApplyable);
+        model.addAttribute("editable", isEditable);
+
         model.addAttribute("singlepost", singlePost);
+        model.addAttribute("applications", applications);
         model.addAttribute("singleuser", singleUser);
         model.addAttribute("pageTitle", singlePost.getTitle());
 
@@ -94,12 +115,8 @@ public class PostController {
         User loggedUser = UserService.findByUsername(name);
 	Post singlePost = PostService.getOne(postid);
 
-System.out.println("The Name is: " + name);
-
         application.setUser(loggedUser);
         application.setPost(singlePost);
-
-System.out.println("The post is: " + application.getPost().getId());
 
         ApplicationValidator.validate(application, bindingResult);
         if (bindingResult.hasErrors()) {
@@ -142,6 +159,33 @@ System.out.println("The post is: " + application.getPost().getId());
 
 	return "redirect:/posts/"+postid;
     }
+
+
+    @RequestMapping(value = "/posts/{postid}/application/{applicationid}/hire", method = RequestMethod.GET)
+    public String applicationHireRequest(Model model, @PathVariable Long postid, @PathVariable Long applicationid) {
+
+        Post singlePost = PostService.getOne(postid);
+        Application singleApplication = ApplicationService.getOne(applicationid);
+
+        model.addAttribute("application", singleApplication);
+        model.addAttribute("post", singlePost);
+        model.addAttribute("pageTitle", "Hire application for: " + singlePost.getTitle());
+
+        return "hireconfirm";
+    }
+    @RequestMapping(value = "/posts/{postid}/application/{applicationid}/hire", method = RequestMethod.POST)
+    public String applicationHire(Model model, @PathVariable Long postid, @PathVariable Long applicationid) {
+
+        Application singleApplication = ApplicationService.getOne(applicationid);
+        Post singlePost = PostService.getOne(postid);
+
+	singlePost.getInspectors().add(singleApplication.getUser());
+
+	PostService.save(singlePost);
+	ApplicationService.delete(singleApplication);
+        return "redirect:/posts/"+postid;
+    }
+
     @RequestMapping(value = "/posts/create", method = RequestMethod.POST)
     public String postCreate(@ModelAttribute("postForm") Post postForm, BindingResult bindingResult, Model model, Principal principal) {
         String name = principal.getName();

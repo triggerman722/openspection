@@ -8,5 +8,6 @@ public interface ApplicationService {
     void delete(Application application);
     Application getOne(Long applicationid);
     List<Application> findByPostId(Long postId);
-    List<Application> findByUserId(Long UserId);
+    List<Application> findByUserId(Long userId);
+    List<Application> findByUserIdAndPostId(Long userId, Long postId);
 }

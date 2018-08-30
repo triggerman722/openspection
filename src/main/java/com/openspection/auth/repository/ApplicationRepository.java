@@ -11,5 +11,6 @@ import java.util.List;
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
     List<Application> findByPostId(Long postId);
     List<Application> findByUserId(Long userId);
+    List<Application> findByUserIdAndPostId(Long userId, Long postId);
 
 }

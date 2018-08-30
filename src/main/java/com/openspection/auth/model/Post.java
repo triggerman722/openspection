@@ -54,6 +54,8 @@ public class Post implements Serializable {
     })
     private Set<Comment> comments;
 
+    private Set<User> inspectors;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
@@ -62,6 +64,19 @@ public class Post implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "POST_INSPECTOR", joinColumns = {
+            @JoinColumn(name = "POST_ID", referencedColumnName = "ID"),
+            @JoinColumn(name = "INSPECTOR_ID", referencedColumnName = "ID")
+    })
+    public Set<User> getInspectors() {
+        return inspectors;
+    }
+
+    public void setInspectors(Set<User> inspectors) {
+        this.inspectors = inspectors;
     }
 
     public Long getCreatedby() {

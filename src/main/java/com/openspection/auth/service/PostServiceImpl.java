@@ -1,6 +1,7 @@
 package com.openspection.auth.service;
 
 import com.openspection.auth.model.Post;
+import com.openspection.auth.model.User;
 import com.openspection.auth.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -24,6 +25,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> findByCreatedby(Long userid) {
         return postRepository.findByCreatedby(userid);
+    }
+    @Override
+    public List<Post> findAllByInspectors(User user) {
+        return postRepository.findAllByInspectors(user);
     }
     @Override
     public Post getOne(Long postid) {

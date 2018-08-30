@@ -35,7 +35,12 @@
 	<div class="container">
 		<p class="text-muted text-uppercase">openspections</p>
 		<c:if test="${empty userposts}">
+		<c:if test="${editable}">
 		<p class="text-muted">You have no Openspections. <a href="/posts/create" class="btn btn-success">Get an inspection</a> right now!</p>
+		</c:if>
+		<c:if test="${!editable}">
+		<p class="text-muted">${user.getUsername()} has no Openspections.</p>
+		</c:if>
 		</c:if>
 		<c:forEach var="userpost" items="${userposts}">
                         <li class="media">
@@ -71,7 +76,29 @@
 				<p><a href="${contextPath}/posts/${userapplication.getPost().getId()}/application/${userapplication.getId()}/cancel">Cancel</a></p>
 </c:if>
                                 </div>
-			</div>
+			</li>
+                        <hr class="my-4">
+</c:forEach>
+<p class="text-muted text-uppercase">inspections</p>
+                <c:if test="${empty userinspections}">
+                <p class="text-muted">You have no inspections to do. When you get hired for inspections jobs, they will appear here.</p>
+                </c:if>
+<c:forEach var="userinspection" items="${userinspections}">
+                        <li class="media">
+                                <img class="mr-3 rounded-circle" src="/resources/img/back0.jpg" width="48" height="48">
+                                <div class="media-body">
+                                <span class="float-right text-muted">4w</span>
+                                <h5 class="mt-0 mb-1"><a href="${contextPath}/posts/${userinspection.getId()}">${userinspection.getTitle()}</a></h5>${userinspection.getDescription()}
+                                <p>
+                                        <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Popular</a>
+                                        <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Location-based</a>
+                                        <a href="#" class="badge badge-danger"><i class="fa fa-tag mr-1"></i>Urgent</a>
+                                </p>
+<c:if test="${editable}">
+                                <p><a href="${contextPath}/posts/${userinspection.getId()}/cancel">Cancel</a></p>
+</c:if>
+                                </div>
+                        </li>
                         <hr class="my-4">
 </c:forEach>
 </div>
