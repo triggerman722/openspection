@@ -3,10 +3,12 @@ package com.openspection.auth.web;
 import com.openspection.auth.model.User;
 import com.openspection.auth.model.Post;
 import com.openspection.auth.model.Application;
+import com.openspection.auth.model.Inspection;
 import com.openspection.auth.service.SecurityService;
 import com.openspection.auth.service.UserService;
 import com.openspection.auth.service.PostService;
 import com.openspection.auth.service.ApplicationService;
+import com.openspection.auth.service.InspectionService;
 import com.openspection.auth.validator.UserValidator;
 import com.openspection.auth.validator.UserprofileValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,9 @@ public class UserController {
 
     @Autowired
     private ApplicationService ApplicationService;
+
+    @Autowired
+    private InspectionService InspectionService;
 
     @Autowired
     private SecurityService SecurityService;
@@ -105,7 +110,7 @@ public class UserController {
 
         User loggedUser = UserService.findByUsername(username);
 	List<Post> userposts = PostService.findByCreatedby(loggedUser.getId());
-	List<Post> userinspections = PostService.findAllByInspectors(loggedUser);
+	List<Inspection> userinspections = InspectionService.findByUserId(loggedUser.getId());
 	List<Application> userapplications = ApplicationService.findByUserId(loggedUser.getId());
 
 	if(principal!=null && principal.getName().equalsIgnoreCase(username)) {

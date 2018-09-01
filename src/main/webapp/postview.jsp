@@ -52,15 +52,16 @@
                         <hr class="my-4">
                 </c:forEach>
  <p class="text-muted text-uppercase">inspectors</p>
-                <c:if test="${empty singlepost.getInspectors()}">
+                <c:if test="${empty inspections}">
                 <p class="text-muted">This Openspection has no inspectors.</p>
                 </c:if>
-                <c:forEach var="inspector" items="${singlepost.getInspectors()}">
+                <c:forEach var="inspection" items="${inspections}">
                         <li class="media">
-                                <img class="mr-3 rounded-circle" src="${inspector.getPhotourl()}" width="48" height="48">
+                                <img class="mr-3 rounded-circle" src="${inspection.getUser().getPhotourl()}" width="48" height="48">
                                 <div class="media-body">
-                                <h5 class="mt-0 mb-1"><a href="${contextPath}/members/${inspector.getUsername()}">${inspector.getUsername()}</a></h5>
+                                <h5 class="mt-0 mb-1"><a href="${contextPath}/members/${inspection.getUser().getUsername()}">${inspection.getUser().getUsername()}</a></h5>
                                 <p>
+                                        <a href="/posts/${singlepost.getId()}/inspections/${inspection.getId()}" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Report</a>
                                         <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Popular</a>
                                         <a href="#" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>Location-based</a>
                                         <a href="#" class="badge badge-danger"><i class="fa fa-tag mr-1"></i>Urgent</a>

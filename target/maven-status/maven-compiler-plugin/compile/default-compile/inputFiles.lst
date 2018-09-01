@@ -2,12 +2,15 @@
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/web/GlobalExceptionController.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Person.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/SecurityServiceImpl.java
+/home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/InspectionService.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/validator/UserValidator.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Role.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Award.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/validator/UserprofileValidator.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/LinkedinConnectionSignup.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/ApplicationServiceImpl.java
+/home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/InspectionServiceImpl.java
+/home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/repository/InspectionRepository.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/web/UserController.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/validator/PostValidator.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/repository/PostRepository.java
@@ -25,6 +28,7 @@
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/PostService.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Comment.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/LinkedinSignInAdapter.java
+/home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Inspection.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Userprofile.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/repository/RoleRepository.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/repository/UserRepository.java

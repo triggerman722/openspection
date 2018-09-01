@@ -1,6 +1,7 @@
 com/openspection/auth/validator/UserprofileValidator.class
 com/openspection/auth/web/GlobalExceptionController.class
 com/openspection/auth/service/PostService.class
+com/openspection/auth/repository/InspectionRepository.class
 com/openspection/auth/WebSecurityConfig.class
 com/openspection/auth/web/IndexController.class
 com/openspection/auth/model/Person.class
@@ -16,12 +17,15 @@ com/openspection/auth/model/Feedback.class
 com/openspection/auth/model/Like.class
 com/openspection/auth/web/UserController.class
 com/openspection/auth/service/ApplicationService.class
+com/openspection/auth/model/Inspection.class
 com/openspection/auth/service/UserDetailsServiceImpl.class
 com/openspection/auth/model/Userprofile.class
+com/openspection/auth/service/InspectionServiceImpl.class
 com/openspection/auth/service/UserService.class
 com/openspection/auth/validator/ApplicationValidator.class
 com/openspection/auth/model/Vote.class
 com/openspection/auth/service/UserServiceImpl.class
+com/openspection/auth/service/InspectionService.class
 com/openspection/auth/model/Role.class
 com/openspection/auth/exception/GlobalExceptionHandler.class
 com/openspection/auth/WebApplication.class

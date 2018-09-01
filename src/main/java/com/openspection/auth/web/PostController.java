@@ -3,9 +3,11 @@ package com.openspection.auth.web;
 import com.openspection.auth.model.Post;
 import com.openspection.auth.model.User;
 import com.openspection.auth.model.Application;
+import com.openspection.auth.model.Inspection;
 import com.openspection.auth.service.PostService;
 import com.openspection.auth.service.UserService;
 import com.openspection.auth.service.ApplicationService;
+import com.openspection.auth.service.InspectionService;
 import com.openspection.auth.validator.PostValidator;
 import com.openspection.auth.validator.ApplicationValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class PostController {
 
     @Autowired
     private ApplicationService ApplicationService;
+
+    @Autowired
+    private InspectionService InspectionService;
 
     @Autowired
     private PostValidator PostValidator;
@@ -76,12 +81,14 @@ public class PostController {
         }
 
 	List<Application> applications = ApplicationService.findByPostId(singlePost.getId());
+	List<Inspection> inspections = InspectionService.findByPostId(singlePost.getId());
 
         model.addAttribute("applyable", isApplyable);
         model.addAttribute("editable", isEditable);
 
         model.addAttribute("singlepost", singlePost);
         model.addAttribute("applications", applications);
+        model.addAttribute("inspections", inspections);
         model.addAttribute("singleuser", singleUser);
         model.addAttribute("pageTitle", singlePost.getTitle());
 
@@ -160,6 +167,30 @@ public class PostController {
 	return "redirect:/posts/"+postid;
     }
 
+    @RequestMapping(value = "/posts/{postid}/inspections/{inspectionid}", method = RequestMethod.GET)
+    public String inspectionGet(Model model, @PathVariable Long postid, @PathVariable Long inspectionid) {
+
+        Post singlePost = PostService.getOne(postid);
+        Inspection singleInspection = InspectionService.getOne(inspectionid);
+
+        model.addAttribute("inspection", singleInspection);
+        model.addAttribute("pageTitle", "Inspection for: " + singlePost.getTitle());
+
+        return "inspectionview";
+    }
+
+    @RequestMapping(value = "/posts/{postid}/inspections/{inspectionid}", method = RequestMethod.POST)
+    public String inspectionEdit(Model model, @PathVariable Long postid, @PathVariable Long inspectionid) {
+
+        Inspection singleInspection = InspectionService.getOne(inspectionid);
+
+	//TODO: The edited inspection needs to be passed in here.
+	//TODO: Only the original inspector may edit.
+
+        InspectionService.save(singleInspection);
+
+        return "redirect:/posts/"+postid+"/inspection/"+inspectionid;
+    }
 
     @RequestMapping(value = "/posts/{postid}/application/{applicationid}/hire", method = RequestMethod.GET)
     public String applicationHireRequest(Model model, @PathVariable Long postid, @PathVariable Long applicationid) {
@@ -176,12 +207,17 @@ public class PostController {
     @RequestMapping(value = "/posts/{postid}/application/{applicationid}/hire", method = RequestMethod.POST)
     public String applicationHire(Model model, @PathVariable Long postid, @PathVariable Long applicationid) {
 
+	//TODO: Only the logged in, original author is permitted to hire!!!
         Application singleApplication = ApplicationService.getOne(applicationid);
         Post singlePost = PostService.getOne(postid);
 
 	singlePost.getInspectors().add(singleApplication.getUser());
 
 	PostService.save(singlePost);
+	Inspection inspection = new Inspection();
+	inspection.setUser(singleApplication.getUser());
+	inspection.setPost(singlePost);
+	InspectionService.save(inspection);
 	ApplicationService.delete(singleApplication);
         return "redirect:/posts/"+postid;
     }
