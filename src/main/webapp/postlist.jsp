@@ -1,9 +1,27 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <c:import url="/prebase.jsp" />
-<c:import url="/searchsmall.jsp" />
+
+
+<div class="container-fluid">
+        <div class="container">
+                <form:form method="POST" modelAttribute="searchrequest" class="form-signin">
+                        <div class="form-row">
+                                <div class="col-md-5">
+                                        <form:input type="text" path="keywords" class="form-control col-md-12 mr-2" placeholder="keywords" autofocus="true"></form:input>
+                                </div>
+                                <div class="col-md-5">
+                                        <form:input type="text" path="location" class="form-control col-md-12 mr-2" placeholder="location" autofocus="true" id="pac-location"></form:input>
+                                </div>
+                                <div class="col-md-2">
+                                        <button class="btn btn-success col-md-12" type="submit"><i class="fa fa-search"></i></button>
+                                </div>
+                        </div>
+        </div>
+</div>
 
 <div class="container-fluid">
 	<div class="container">
@@ -13,12 +31,8 @@
                    <hr class="my-4">
     <div class="form-group">
   <label for="sel1">Category</label>
-  <select class="form-control" id="sel1">
-    <option>Business</option>
-    <option>People</option>
-    <option>Dogs</option>
-    <option>Other items not categorized as such</option>
-  </select>
+
+<form:select path="category" class="form-control"><form:options itemLabel="displayname" /></form:select>
 </div>
     <div class="form-check">
   <label class="form-check-label">
@@ -55,4 +69,5 @@
         </div>
 </div>
 </div>
+ </form:form>
 <c:import url="/postbase.jsp" />

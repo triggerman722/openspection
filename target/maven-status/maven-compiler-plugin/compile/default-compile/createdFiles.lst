@@ -19,6 +19,7 @@ com/openspection/auth/web/UserController.class
 com/openspection/auth/service/ApplicationService.class
 com/openspection/auth/model/Inspection.class
 com/openspection/auth/service/UserDetailsServiceImpl.class
+com/openspection/auth/model/Category.class
 com/openspection/auth/model/Userprofile.class
 com/openspection/auth/service/InspectionServiceImpl.class
 com/openspection/auth/service/UserService.class
@@ -32,6 +33,7 @@ com/openspection/auth/WebApplication.class
 com/openspection/auth/model/Post.class
 com/openspection/auth/model/Follow.class
 com/openspection/auth/repository/PostRepository.class
+com/openspection/auth/model/SearchRequest.class
 com/openspection/auth/web/PostController.class
 com/openspection/auth/model/Application.class
 com/openspection/auth/repository/RoleRepository.class

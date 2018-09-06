@@ -15,6 +15,7 @@
 			<div class="media-body">
 				<h4 class="mt-0">${singlepost.title}</h4>
 				<p>${singlepost.description}</p>
+<p><a href="/posts/categories/${singlepost.getCategory()}" class="badge badge-primary"><i class="fa fa-tag mr-1"></i>${singlepost.getCategory().getDisplayname()}</a></p>
 				<p class="text-muted"><small>${singlepost.datecreated}</small></p>
 				<div class="media">
 				<img class="align-self-center mr-1 rounded-circle" src="${singleuser.getPhotourl()}" style="width:32px;height:32px;">

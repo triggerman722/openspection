@@ -39,9 +39,13 @@
 </div>
 </div>
 <div class="form-row">
-<div class="form-group col-md-12">
+<div class="form-group col-md-6">
 		<label>Radius</label>
 <form:input type="number" path="radius" class="form-control"></form:input>
+</div>
+<div class="form-group col-md-6">
+                <label>Category</label>
+<form:select path="category" class="form-control"><form:options itemLabel="displayname" /></form:select>
 </div>
 </div>
 <div class="form-row">

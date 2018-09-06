@@ -55,6 +55,7 @@ public class Post implements Serializable {
     private Set<Comment> comments;
 
     private Set<User> inspectors;
+    private Category category;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -189,5 +190,14 @@ public class Post implements Serializable {
 
     public void setAcceptedcommentid(Long acceptedcommentid) {
         this.acceptedcommentid = acceptedcommentid;
+    }
+
+    @Enumerated(EnumType.STRING)
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

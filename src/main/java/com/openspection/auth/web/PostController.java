@@ -4,6 +4,7 @@ import com.openspection.auth.model.Post;
 import com.openspection.auth.model.User;
 import com.openspection.auth.model.Application;
 import com.openspection.auth.model.Inspection;
+import com.openspection.auth.model.SearchRequest;
 import com.openspection.auth.service.PostService;
 import com.openspection.auth.service.UserService;
 import com.openspection.auth.service.ApplicationService;
@@ -238,39 +239,30 @@ public class PostController {
 	PostService.save(postForm);
         return "redirect:/members/"+name;
     }
-    @RequestMapping(value = "/posts/search", method = RequestMethod.GET)
-    public String searchforposts(Model model, Pageable pageable,
-        @RequestParam("keywords") String keywords,
-	@RequestParam(value="location", required=false) String location,
-	@RequestParam(value="latitude", required=false) Double flatitude,
-	@RequestParam(value="longitude", required=false) Double flongitude,
-        @RequestParam(value="category_id", required=false) Integer categoryId) {
+    @RequestMapping(value = "/posts/search", method = RequestMethod.POST)
+    public String searchforposts(Model model, Pageable pageable, @ModelAttribute("searchrequest") SearchRequest searchrequest) { 
 
-	double latitude = flatitude;
-	double longitude = flongitude;
-
-        System.out.println("Keywords: " + keywords 
-		+ "Location: " + location 
-		+ "Latitude: " + latitude 
-		+ "Longitude: " + longitude 
-		+ " Category: " + categoryId);
-	if (latitude < 1 && longitude < 1) {
+        System.out.println("Keywords: " + searchrequest.getKeywords() 
+		+ "Location: " + searchrequest.getLocation() 
+		+ "Latitude: " + searchrequest.getLatitude() 
+		+ "Longitude: " + searchrequest.getLongitude() 
+		+ " Category: " + searchrequest.getCategory());
+	if (searchrequest.getLatitude() < 1 && searchrequest.getLongitude() < 1) {
 
 		JSONArray joa = null;
 		try {
-			joa = (JSONArray) new JSONTokener(IOUtils.toString(new URL("https://nominatim.openstreetmap.org/search?q="+URLEncoder.encode(location, "UTF-8")+"&format=json&addressdetails=1").openStream(), "UTF-8")).nextValue();
+			joa = (JSONArray) new JSONTokener(IOUtils.toString(new URL("https://nominatim.openstreetmap.org/search?q="+URLEncoder.encode(searchrequest.getLocation(), "UTF-8")+"&format=json&addressdetails=1").openStream(), "UTF-8")).nextValue();
 			JSONObject jo = joa.getJSONObject(0);
-			latitude = jo.getDouble("lat");
-			longitude = jo.getDouble("lon");
+			searchrequest.setLatitude(jo.getDouble("lat"));
+			searchrequest.setLongitude(jo.getDouble("lon"));
 		} catch (Exception e){
 			System.out.println(e.getMessage());
 		}
 	}
 
-        List<Post> searchresults = PostService.findPostsByTitleDescriptionAndLocation(keywords, keywords, latitude, longitude, 100, pageable);
+        List<Post> searchresults = PostService.findPostsByTitleDescriptionAndLocation(searchrequest.getKeywords(), searchrequest.getKeywords(), searchrequest.getLatitude(), searchrequest.getLongitude(), 100, pageable);
         model.addAttribute("searchresults", searchresults);
-        model.addAttribute("keywords", keywords);
-        model.addAttribute("location", location);
+        model.addAttribute("searchrequest", searchrequest);
 
         return "postlist";
     }

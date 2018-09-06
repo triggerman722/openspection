@@ -14,6 +14,7 @@ import javax.servlet.ServletContext;
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.Random;
+import com.openspection.auth.model.SearchRequest;
 
 @Controller
 public class IndexController {
@@ -25,6 +26,7 @@ public class IndexController {
 	//if (null != principal) {
 //		return "redirect:/members/"+principal.getName();
 //	}
+	model.addAttribute("searchrequest", new SearchRequest());
         model.addAttribute("pageTitle", "#1 Inspection Marketplace for Inspector Talent | Openspection.com");
         return "index";
     }
