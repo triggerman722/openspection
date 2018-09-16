@@ -17,6 +17,7 @@ com/openspection/auth/model/Feedback.class
 com/openspection/auth/model/Like.class
 com/openspection/auth/web/UserController.class
 com/openspection/auth/service/ApplicationService.class
+com/openspection/auth/interceptors/CategoryCountInterceptor.class
 com/openspection/auth/model/Inspection.class
 com/openspection/auth/service/UserDetailsServiceImpl.class
 com/openspection/auth/model/Category.class
@@ -37,6 +38,7 @@ com/openspection/auth/model/SearchRequest.class
 com/openspection/auth/web/PostController.class
 com/openspection/auth/model/Application.class
 com/openspection/auth/repository/RoleRepository.class
+com/openspection/auth/WebMvcConfig.class
 com/openspection/auth/repository/ApplicationRepository.class
 com/openspection/auth/model/User.class
 com/openspection/auth/repository/UserRepository.class

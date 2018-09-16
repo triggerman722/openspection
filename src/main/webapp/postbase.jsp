@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 	   <div class="container">
 		   <h4 class="my-4">Browse Categories</h4>
@@ -9,67 +10,68 @@
 		   <div class="row">
           
           <div class="col-md-4">
-            <h5>Locations<span class="badge badge-primary float-right">16</span></h5>
+            <h5>Locations<span class="badge badge-primary float-right">
+		${SECRET_SHOPPING + SECRET_RESTAURANTS + LANDMARKS}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Secret Shopping</a></li>
-              <li><a class="text-muted" href="#">Secret Restaurants</a></li>
-              <li><a class="text-muted" href="#">Landmarks</a></li>
+              <li><a class="text-muted" href="/posts/categories/SECRET_SHOPPING">Secret Shopping</a></li>
+              <li><a class="text-muted" href="/posts/categories/SECRET_RESTAURANTS">Secret Restaurants</a></li>
+              <li><a class="text-muted" href="/posts/categories/LANDMARKS">Landmarks</a></li>
             </ul>
           </div>
           <div class="col-md-4">
-            <h5>People<span class="badge badge-primary float-right">275</span></h5>
+            <h5>People<span class="badge badge-primary float-right">${SPOUSES + CELEBRITIES}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Spouses</a></li>
-              <li><a class="text-muted" href="#">Celebrities</a></li>
+              <li><a class="text-muted" href="/posts/categories/SPOUSES">Spouses</a></li>
+              <li><a class="text-muted" href="/posts/categories/CELEBRITIES">Celebrities</a></li>
               
             </ul>
           </div>
           <div class="col-md-4">
-            <h5>Events<span class="badge badge-primary float-right">14565</span></h5>
+            <h5>Events<span class="badge badge-primary float-right">${CONCERTS + LIVE_SPORTS + CONFERENCES}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Concerts</a></li>
-              <li><a class="text-muted" href="#">Live Sports</a></li>
-              <li><a class="text-muted" href="#">Conferences</a></li>
+              <li><a class="text-muted" href="/posts/categories/CONCERTS">Concerts</a></li>
+              <li><a class="text-muted" href="/posts/categories/LIVE_SPORTS">Live Sports</a></li>
+              <li><a class="text-muted" href="/posts/categories/CONFERENCES">Conferences</a></li>
             </ul>
           </div>
 		<div class="col-md-4">
-            <h5>Automotive<span class="badge badge-primary float-right">565</span></h5>
+            <h5>Automotive<span class="badge badge-primary float-right">${PRESALE_INSPECTIONS + NEW_VEHICLES + AUTO_PARTS}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Pre-sale inspections</a></li>
-              <li><a class="text-muted" href="#">New Vehicles</a></li>
-              <li><a class="text-muted" href="#">Auto parts</a></li>
+              <li><a class="text-muted" href="/posts/categories/PRESALE_INSPECTIONS">Pre-sale inspections</a></li>
+              <li><a class="text-muted" href="/posts/categories/NEW_VEHICLES">New Vehicles</a></li>
+              <li><a class="text-muted" href="/posts/categories/AUTO_PARTS">Auto parts</a></li>
             </ul>
           </div>
 		<div class="col-md-4">
-            <h5>Software<span class="badge badge-primary float-right">145</span></h5>
+            <h5>Software<span class="badge badge-primary float-right">${CODE_REVIEWS + WEBSITE_INVESTIGATIONS + HACKING}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Code Reviews</a></li>
-              <li><a class="text-muted" href="#">Website Investigations</a></li>
-              <li><a class="text-muted" href="#">Hacking</a></li>
+              <li><a class="text-muted" href="/posts/categories/CODE_REVIEWS">Code Reviews</a></li>
+              <li><a class="text-muted" href="/posts/categories/WEBSITE_INVESTIGATIONS">Website Investigations</a></li>
+              <li><a class="text-muted" href="/posts/categories/HACKING">Hacking</a></li>
             </ul>
           </div>
 		<div class="col-md-4">
-            <h5>Testing<span class="badge badge-primary float-right">65</span></h5>
+            <h5>Testing<span class="badge badge-primary float-right">${WATER+SOIL+AIR_QUALITY}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Water</a></li>
-              <li><a class="text-muted" href="#">Soil</a></li>
-              <li><a class="text-muted" href="#">Air Quality</a></li>
+              <li><a class="text-muted" href="/posts/categories/WATER">Water</a></li>
+              <li><a class="text-muted" href="/posts/categories/SOIL">Soil</a></li>
+              <li><a class="text-muted" href="/posts/categories/AIR_QUALITY">Air Quality</a></li>
             </ul>
           </div>
 		<div class="col-md-4">
-            <h5>Financial<span class="badge badge-primary float-right">14</span></h5>
+            <h5>Financial<span class="badge badge-primary float-right">${ACCOUNT_INVESTIGATION + PUBLIC_FILINGS + CREDIT_CHECKS}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Account investigation</a></li>
-              <li><a class="text-muted" href="#">Public filings</a></li>
-              <li><a class="text-muted" href="#">Credit checks</a></li>
+              <li><a class="text-muted" href="/posts/categories/ACCOUNT_INVESTIGATION">Account investigation</a></li>
+              <li><a class="text-muted" href="/posts/categories/PUBLIC_FILINGS">Public filings</a></li>
+              <li><a class="text-muted" href="/posts/categories/CREDIT_CHECKS">Credit checks</a></li>
             </ul>
           </div>
 				<div class="col-md-4">
-            <h5>Home<span class="badge badge-primary float-right">5</span></h5>
+            <h5>Home<span class="badge badge-primary float-right">${HOME_INVESTIGATION + TITLE_INVESTIGATIONS + DRONE_FLYOVER}</span></h5>
             <ul class="list-unstyled text-small">
-              <li><a class="text-muted" href="#">Home investigtions</a></li>
-              <li><a class="text-muted" href="#">Title investigtions</a></li>
-              <li><a class="text-muted" href="#">Drone flyovers</a></li>
+              <li><a class="text-muted" href="/posts/categories/HOME_INVESTIGATIONS">Home investigtions</a></li>
+              <li><a class="text-muted" href="/posts/categories/TITLE_INVESTIGATIONS">Title investigtions</a></li>
+              <li><a class="text-muted" href="/posts/categories/DRONE_FLYOVERS">Drone flyovers</a></li>
             </ul>
           </div>
         </div>

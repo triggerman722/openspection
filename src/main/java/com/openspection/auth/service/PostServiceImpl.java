@@ -2,6 +2,7 @@ package com.openspection.auth.service;
 
 import com.openspection.auth.model.Post;
 import com.openspection.auth.model.User;
+import com.openspection.auth.model.Category;
 import com.openspection.auth.repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
@@ -36,14 +37,19 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findPostsByTitleDescriptionAndLocation(
+    public Long countByCategory(Category category) {
+        return postRepository.countByCategory(category);
+    }
+
+    @Override
+    public List<Post> findPostsByTitleDescriptionLocationAndCategory(
 		String title,
 		String description,
 		double latitude,
-		double longitude,
+		double longitude, Category category,
 		double distance,
 		Pageable pageable) {
-        return postRepository.findPostsByTitleDescriptionAndLocation(title, description, latitude, longitude, distance, pageable);
+        return postRepository.findPostsByTitleDescriptionLocationAndCategory(title, description, latitude, longitude, category, distance, pageable);
     }
 
 }

@@ -24,11 +24,12 @@ public class Post implements Serializable {
 
     private String title;
     private String description;
+    private String location;
 
     private Long createdby;
 
-    private float latitude;
-    private float longitude;
+    private double latitude;
+    private double longitude;
     private Long radius;
 
     private boolean requestPhotos;
@@ -104,19 +105,27 @@ public class Post implements Serializable {
         this.description = description;
     }
 
-    public float getLatitude() {
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public float getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

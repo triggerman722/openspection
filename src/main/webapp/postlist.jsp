@@ -8,7 +8,7 @@
 
 <div class="container-fluid">
         <div class="container">
-                <form:form method="POST" modelAttribute="searchrequest" class="form-signin">
+                <form:form method="POST" action="/posts/search" modelAttribute="searchrequest" class="form-signin">
                         <div class="form-row">
                                 <div class="col-md-5">
                                         <form:input type="text" path="keywords" class="form-control col-md-12 mr-2" placeholder="keywords" autofocus="true"></form:input>

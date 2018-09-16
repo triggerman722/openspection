@@ -25,17 +25,13 @@
 <div class="form-row">
 <div class="form-group col-md-12">
 		<label>Expiry Date</label>
-<form:input type="date" path="dateexpired" class="form-control" placeholder="dateexpired"></form:input>
+		<form:input type="date" path="dateexpired" class="form-control" placeholder="dateexpired"></form:input>
 </div>
 </div>
 <div class="form-row">
-<div class="form-group col-md-6">
-		<label>Latitude</label>
-<form:input type="number" step="any" path="latitude" class="form-control"></form:input>
-</div>
-<div class="form-group col-md-6">
-		<label>Longitude</label>
-<form:input type="number" step="any" path="longitude" class="form-control"></form:input>
+<div class="form-group col-md-12">
+		<label>Location</label>
+		<form:input type="text" path="location" class="form-control" placeholder="location" autofocus="true" id="pac-location"></form:input>
 </div>
 </div>
 <div class="form-row">

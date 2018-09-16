@@ -9,6 +9,7 @@
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/validator/UserprofileValidator.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/LinkedinConnectionSignup.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/ApplicationServiceImpl.java
+/home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/SearchRequest.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/InspectionServiceImpl.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/repository/InspectionRepository.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/web/UserController.java
@@ -26,6 +27,7 @@
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/User.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/WebApplication.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/PostService.java
+/home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Category.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Comment.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/service/LinkedinSignInAdapter.java
 /home/chronos/user/Projects/openspection/src/main/java/com/openspection/auth/model/Inspection.java

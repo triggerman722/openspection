@@ -2,6 +2,7 @@ package com.openspection.auth.model;
 
 public enum Category {
 
+ALL("All Categories"),
 SECRET_SHOPPING("Secret Shopping"),
 SECRET_RESTAURANTS("Secret Restaurants"),
 LANDMARKS("Landmarks"),
@@ -10,6 +11,7 @@ CELEBRITIES("Celebrities"),
 CONCERTS("Concerts"),
 LIVE_SPORTS("Live Sports"),
 CONFERENCES("Conferences"),
+PRESALE_INSPECTIONS("Pre-sale Inspections"),
 NEW_VEHICLES("New Vehicles"),
 AUTO_PARTS("Auto parts"),
 CODE_REVIEWS("Code Reviews"),

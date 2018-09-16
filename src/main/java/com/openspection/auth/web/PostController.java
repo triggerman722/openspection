@@ -5,6 +5,7 @@ import com.openspection.auth.model.User;
 import com.openspection.auth.model.Application;
 import com.openspection.auth.model.Inspection;
 import com.openspection.auth.model.SearchRequest;
+import com.openspection.auth.model.Category;
 import com.openspection.auth.service.PostService;
 import com.openspection.auth.service.UserService;
 import com.openspection.auth.service.ApplicationService;
@@ -230,6 +231,16 @@ public class PostController {
 	postForm.setCreatedby(loggedUser.getId());
 	postForm.setDatecreated(new Date());
 
+        JSONArray joa = null;
+        try {
+            joa = (JSONArray) new JSONTokener(IOUtils.toString(new URL("https://nominatim.openstreetmap.org/search?q="+URLEncoder.encode(postForm.getLocation(), "UTF-8")+"&format=json&addressdetails=1").openStream(), "UTF-8")).nextValue();
+            JSONObject jo = joa.getJSONObject(0);
+            postForm.setLatitude(jo.getDouble("lat"));
+            postForm.setLongitude(jo.getDouble("lon"));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
         PostValidator.validate(postForm, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("pageTitle", "Create a new post - but please fix these errors!");
@@ -257,14 +268,29 @@ public class PostController {
 			searchrequest.setLongitude(jo.getDouble("lon"));
 		} catch (Exception e){
 			System.out.println(e.getMessage());
+			searchrequest.setLatitude(0);
+			searchrequest.setLongitude(0);
 		}
 	}
 
-        List<Post> searchresults = PostService.findPostsByTitleDescriptionAndLocation(searchrequest.getKeywords(), searchrequest.getKeywords(), searchrequest.getLatitude(), searchrequest.getLongitude(), 100, pageable);
+        List<Post> searchresults = PostService.findPostsByTitleDescriptionLocationAndCategory(searchrequest.getKeywords(), searchrequest.getKeywords(), searchrequest.getLatitude(), searchrequest.getLongitude(), searchrequest.getCategory(), 100, pageable);
         model.addAttribute("searchresults", searchresults);
         model.addAttribute("searchrequest", searchrequest);
 
         return "postlist";
     }
+    @RequestMapping(value = "/posts/categories/{category}", method = RequestMethod.GET)
+    public String postsbycategory(Model model, Pageable pageable, @PathVariable String category) {
+        SearchRequest searchrequest = new SearchRequest();    
+	searchrequest.setCategory(Category.valueOf(category));
+	searchrequest.setLatitude(0);
+	searchrequest.setLongitude(0);
+	searchrequest.setKeywords("");
 
+ 	List<Post> searchresults = PostService.findPostsByTitleDescriptionLocationAndCategory(searchrequest.getKeywords(), searchrequest.getKeywords(), searchrequest.getLatitude(), searchrequest.getLongitude(), searchrequest.getCategory(), 100, pageable);
+        model.addAttribute("searchresults", searchresults);
+        model.addAttribute("searchrequest", searchrequest);
+
+        return "postlist";
+    }
 }
